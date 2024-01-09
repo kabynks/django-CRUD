@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    Car "{{ car.name }}"
+{% endblock title %}
+
+{% block body %}
+    <a style="margin-left: 90%" href="{% url 'update_car' car.pk %}">Update a car</a>
+    <a style="margin-left: 90%" href="{% url 'delete_car' car.pk %}">Delete car</a>
+    <p>Name - {{ car.name }}</p>
+    <p>Price - {{ car.price }}</p>
+    <p>Capacity - {% firstof car.capacity 'Not capacity' %}</p>
+    <p>Color - {{ car.color }}</p>
+    <p>Date - {{ car.date_of_manufacture }}</p>
+    <p>Horse power - {{ car.horse_power }}</p>
+    <p>Brand - {{ car.brand }}</p>
+    <p>Description - {{ car.description }}</p>
+
+{% endblock body %}

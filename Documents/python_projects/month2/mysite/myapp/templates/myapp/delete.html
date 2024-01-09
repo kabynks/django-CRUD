@@ -1,0 +1,11 @@
+{% block title %}
+    Delete car "{{ car.name }}"?
+{% endblock title %}
+
+{% block body %}
+    <form action="", method="post", enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Are you sure to delete a car "{{ car.name }}"?</h2>
+        <input type="submit">    
+    </form>
+{% endblock %}

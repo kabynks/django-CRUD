@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+    Cars list
+{% endblock title %}
+
+{% block body %}
+    <a style="margin-left: 90%" href="{% url 'create_car' %}">Create a car</a>
+    {% for car in cars %}
+        <p><a style="text-decoration: none" href="{% url 'car' car.pk %}">{{ car.name }}</a></p>
+    {% endfor %}
+    <header>
+
+    </header>
+{% endblock body %}

@@ -17,12 +17,12 @@ class CarDetail(DetailView):
 class CreateCar(CreateView):
     model = Car
     template_name = "myapp/create.html"
-    fields = ["name", "brand", "horse_power", "capacity", "description", "color", "price"]
+    fields = ["name", "brand", "horse_power", "capacity", "description", "color", "price", "car_image"]
     success_url = reverse_lazy('cars')
 class UpdateCar(UpdateView):
     model = Car
     template_name = "myapp/update.html"
-    fields = ["name", "brand", "horse_power", "capacity", "description", "color", "price"]
+    fields = ["name", "brand", "horse_power", "capacity", "description", "color", "price", "car_image"]
     success_url = reverse_lazy("cars")
 class DeleteCar(DeleteView):
     model = Car

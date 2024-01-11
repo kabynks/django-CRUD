@@ -1,19 +1,72 @@
-{% extends 'myapp/base.html' %}
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<title>Car "{{ car.name }}"</title>
+<link rel="stylesheet" href="../../static/myapp/style.css">
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="{% url 'create_car' %}" class="nav-link">Create a car</a></li>
+        <li class="nav-item"><a href="{% url 'update_car' car.pk %}" class="nav-link">Update car</a></li>
+        <li class="nav-item"><a href="{% url 'delete_car' car.pk %}" class="nav-link">Delete car</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </header>
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-{% block title %}
-    Car "{{ car.name }}"
-{% endblock title %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ car.name }}</h3>
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="white-box text-center"><img style="width: 95%; border-radius: 3%" src="{{ car.car_image.url }}" class="img-responsive"></div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-6">
+                    <h4 class="box-title mt-5">Car description</h4>
+                    <p>{{ car.description }}</p>
+                    <h2 class="mt-5">
+                        ${{ car.price }}<small class="text-success">(36%off)</small>
+                    </h2>
+                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                    <button class="btn btn-primary btn-rounded">Номер продавца</button>
 
-{% block body %}
-    <a style="margin-left: 90%" href="{% url 'update_car' car.pk %}">Update a car</a>
-    <a style="margin-left: 90%" href="{% url 'delete_car' car.pk %}">Delete car</a>
-    <p>Name - {{ car.name }}</p>
-    <p>Price - {{ car.price }}</p>
-    <p>Capacity - {% firstof car.capacity 'Not capacity' %}</p>
-    <p>Color - {{ car.color }}</p>
-    <p>Date - {{ car.date_of_manufacture }}</p>
-    <p>Horse power - {{ car.horse_power }}</p>
-    <p>Brand - {{ car.brand }}</p>
-    <p>Description - {{ car.description }}</p>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3 class="box-title mt-5">General Info</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td width="390">Brand</td>
+                                    <td>{{ car.brand }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date of manufacture</td>
+                                    <td>{{ car.date_of_manufacture }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Horse power</td>
+                                    <td>{{ car.horse_power }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Capacity</td>
+                                    <td>{{ car.capacity }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Color of car</td>
+                                    <td>{{ car.color }}</td>
+                                </tr>
 
-{% endblock body %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

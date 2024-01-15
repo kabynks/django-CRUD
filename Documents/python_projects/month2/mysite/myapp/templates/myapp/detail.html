@@ -6,12 +6,19 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="{% url 'create_car' %}" class="nav-link">Create a car</a></li>
-        <li class="nav-item"><a href="{% url 'update_car' car.pk %}" class="nav-link">Update car</a></li>
-        <li class="nav-item"><a href="{% url 'delete_car' car.pk %}" class="nav-link">Delete car</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
-    </header>
+          {% if user.is_authenticated and request.user == car.author %}
+            <li class="nav-item"><a href="{% url 'create_car' %}" class="nav-link">Create a car</a></li>
+
+                <li class="nav-item"><a href="{% url 'update_car' car.pk %}" class="nav-link">Update car</a></li>
+                <li class="nav-item"><a href="{% url 'delete_car' car.pk %}" class="nav-link">Delete car</a></li>
+              <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+        {% elif user.is_authenticated and request.user != car.author %}
+              <li class="nav-item"><a href="{% url 'create_car' %}" class="nav-link">Create a car</a></li>
+             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+          {% else %}
+                <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+              <li class="nav-item"><a href="" class="nav-link">Signup</a></li>
+          {% endif %}
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="container">
@@ -58,6 +65,10 @@
                                 <tr>
                                     <td>Color of car</td>
                                     <td>{{ car.color }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Author</td>
+                                    <td>{{ car.author }}</td>
                                 </tr>
 
                             </tbody>
